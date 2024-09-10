@@ -43,15 +43,30 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-	{ "itchyny/lightline.vim", lazy = false,
+	{
+		"itchyny/lightline.vim", lazy = false,
 		config = function()
 			vim.g.lightline = {
 				colorscheme = "darcula"
 			}
 		end
 	},
-	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...}
+	{
+		"ellisonleao/gruvbox.nvim",
+		priority = 1000,
+		config = true,
+		opts = ...
+	},
+	{
+		'neovim/nvim-lspconfig',
+		config = function()
+			local lspconfig = require('lspconfig')
+			lspconfig.jedi_language_server.setup {}
+		end
+
+	},
 })
+
 
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
